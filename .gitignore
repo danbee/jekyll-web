@@ -18,4 +18,4 @@ tmp
 .sass-cache
 
 # config
-config/jekyll.yml
+config.yml

@@ -1,0 +1,4 @@
+site_path: '/path/to/jekyll/site'
+posts_dir: '_posts'
+drafts_dir: '_drafts'
+post_ext: 'markdown'
