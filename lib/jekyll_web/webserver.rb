@@ -14,5 +14,14 @@ module JekyllWeb
 
     register Sinatra::AssetPipeline
     register Sinatra::Namespace
+
+    get '/' do
+      "Hello, World!"
+    end
+
+    get '/env' do
+      content_type :json
+      ENV.to_hash.to_json
+    end
   end
 end
