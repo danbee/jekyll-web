@@ -19,19 +19,25 @@ module JekyllWeb
     set :assets_prefix, ['assets']
 
     get '/' do
-      "Hello, World!"
+      erb :index
     end
 
-    get '/env' do
-      content_type :json
-      ENV.to_hash.to_json
+    namespace '/api' do
+
+      # TODO: Don't leave this hanging around!
+      get '/env' do
+        content_type :json
+        ENV.to_hash.to_json
+      end
+
+      get '/drafts' do
+        dir = Dir.new("#{settings.site_path}/#{settings.drafts_dir}")
+        drafts = dir.each.select { |e| e[/#{settings.post_ext}$/] }
+        content_type :json
+        drafts.to_json
+      end
+
     end
 
-    get '/drafts' do
-      dir = Dir.new("#{settings.site_path}/#{settings.drafts_dir}")
-      drafts = dir.each.select { |e| e[/#{settings.post_ext}$/] }
-      content_type :json
-      drafts.to_json
-    end
   end
 end
