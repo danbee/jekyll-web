@@ -6,17 +6,24 @@ require 'sass'
 module JekyllWeb
   class Webserver < Sinatra::Base
     register Sinatra::ConfigFile
-    register Sinatra::AssetPipeline
     register Sinatra::Namespace
-
-    config_file '../../config.yml'
 
     set server: 'puma'
 
     set :root, File.expand_path('../../', __dir__)
 
-    set :assets_precompile, %w(app.js app.css *.png *.jpg *.svg *.eot *.ttf *.woff)
+    config_file "#{settings.root}/config.yml"
+
+    set :assets_precompile, %w(application.js styles.css *.png *.jpg *.svg *.eot *.ttf *.woff)
     set :assets_prefix, ['assets']
+
+    register Sinatra::AssetPipeline
+
+    if defined?(RailsAssets)
+      RailsAssets.load_paths.each do |path|
+        settings.sprockets.append_path(path)
+      end
+    end
 
     get '/' do
       erb :index

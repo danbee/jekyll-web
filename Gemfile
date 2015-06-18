@@ -7,6 +7,11 @@ gem 'sinatra-contrib'
 gem 'sinatra-asset-pipeline'
 gem 'foreman'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-react'
+end
+
 group :development, :test do
   gem 'pry'
 end
