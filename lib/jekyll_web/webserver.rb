@@ -32,16 +32,27 @@ module JekyllWeb
     namespace '/api' do
 
       # TODO: Don't leave this hanging around!
-      get '/env' do
+      get '/env.json' do
         content_type :json
         ENV.to_hash.to_json
       end
 
-      get '/drafts' do
+      get '/drafts.json' do
         dir = Dir.new("#{settings.site_path}/#{settings.drafts_dir}")
         drafts = dir.each.select { |e| e[/#{settings.post_ext}$/] }
+        send_json(drafts)
+      end
+
+      get '/posts.json' do
+        dir = Dir.new("#{settings.site_path}/#{settings.posts_dir}")
+        posts = dir.each.select { |e| e[/#{settings.post_ext}$/] }
+        send_json(posts)
+      end
+
+      def send_json(data)
         content_type :json
-        drafts.to_json
+        { status: :success,
+          data: data }.to_json
       end
 
     end
