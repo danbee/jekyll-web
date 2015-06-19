@@ -1,19 +1,18 @@
 var postsStore = Reflux.createStore({
   init: function () {
-    this.items = [];
+    this.endpoint = '/api/posts.json';
     this.listenTo(Actions.refreshPosts, this.refreshItems);
   },
 
   refreshItems: function () {
     $.ajax({
-      url: '/api/posts.json',
+      url: this.endpoint,
       dataType: 'json',
       success: function (response) {
-        this.items = response.data;
-        this.trigger(this.items);
+        this.trigger(response.data);
       }.bind(this),
       error: function (xhr, status, err) {
-        console.error('/api/posts.json', status, err.toString());
+        console.error(this.endpoint, status, err.toString());
       }.bind(this)
     });
   }
