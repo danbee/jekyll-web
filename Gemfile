@@ -11,6 +11,7 @@ gem 'foreman'
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
   gem 'rails-assets-react'
+  gem 'rails-assets-reflux'
 end
 
 group :development, :test do

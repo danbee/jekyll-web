@@ -1,38 +1,21 @@
 var Posts = React.createClass({
-  loadPosts: function () {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      success: function (response) {
-        this.setState({ data: response.data });
-      }.bind(this),
-      error: function (xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
   getInitialState: function () {
-    return { data: [] }
+    return { items: [] }
   },
   componentDidMount: function () {
-    this.loadPosts();
+    this.unsubscribe = postsStore.listen(this.updateItems);
+  },
+  updateItems: function (items) {
+    this.setState({ items: items });
   },
   render: function () {
-    return (
-      <PostList data={this.state.data}></PostList>
-    )
-  }
-});
-
-var PostList = React.createClass({
-  render: function () {
-    var posts = this.props.data.map(function (post) {
+    var posts = this.state.items.map(function (post) {
       return (
         <Post filename={post}></Post>
       );
     });
     return (
-      <ul class="postList">
+      <ul className="postList">
         {posts}
       </ul>
     );
