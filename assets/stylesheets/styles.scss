@@ -1,3 +1,10 @@
 @import 'bourbon';
 @import 'base/base';
+@import 'neat';
+
+@import 'includes/_typography.scss';
 @import 'includes/_tables.scss';
+
+#content {
+  @include outer-container;
+}
