@@ -13,6 +13,7 @@ module JekyllWeb
         if content =~ /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m
           self.content = $POSTMATCH
           self.data = SafeYAML.load($1)
+          self.data['date'] = DateTime.parse(data['date'].to_s).strftime('%FT%T%:z') if !self.data['date'].nil?
         end
       rescue SyntaxError => e
         Jekyll.logger.warn "YAML Exception reading #{File.join(base, name)}: #{e.message}"
