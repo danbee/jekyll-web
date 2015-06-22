@@ -20,13 +20,16 @@ var Posts = React.createClass({
   render: function () {
     var posts = this.state.items.map(function (post) {
       return (
-        <Post filename={post}></Post>
+        <Post data={post}></Post>
       );
     });
     return (
-      <ul className="postList">
+      <table className="postList">
+        <tr>
+          <th>Title</th>
+        </tr>
         {posts}
-      </ul>
+      </table>
     );
   }
 });
@@ -34,7 +37,9 @@ var Posts = React.createClass({
 var Post = React.createClass({
   render: function () {
     return (
-      <li>{this.props.filename}</li>
+      <tr>
+        <td>{this.props.data.title}</td>
+      </tr>
     );
   }
 });

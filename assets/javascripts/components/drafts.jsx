@@ -20,13 +20,16 @@ var Drafts = React.createClass({
   render: function () {
     var drafts = this.state.items.map(function (draft) {
       return (
-        <Draft filename={draft}></Draft>
+        <Draft data={draft}></Draft>
       );
     });
     return (
-      <ul className="draftList">
+      <table className="draftList">
+        <tr>
+          <th>Title</th>
+        </tr>
         {drafts}
-      </ul>
+      </table>
     );
   }
 });
@@ -34,7 +37,9 @@ var Drafts = React.createClass({
 var Draft = React.createClass({
   render: function () {
     return (
-      <li>{this.props.filename}</li>
+      <tr>
+        <td>{this.props.data.title}</td>
+      </tr>
     );
   }
 });

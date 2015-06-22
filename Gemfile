@@ -10,6 +10,8 @@ gem 'sinatra-asset-pipeline'
 gem 'react-jsx-sprockets'
 gem 'foreman'
 
+gem 'jekyll'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
   gem 'rails-assets-react'
