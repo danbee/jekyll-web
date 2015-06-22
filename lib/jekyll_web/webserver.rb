@@ -39,13 +39,13 @@ module JekyllWeb
 
       get '/drafts.json' do
         dir = Dir.new("#{settings.site_path}/#{settings.drafts_dir}")
-        drafts = dir.each.select { |e| e[/#{settings.post_ext}$/] }
+        drafts = get_posts(dir)
         send_json(drafts)
       end
 
       get '/posts.json' do
         dir = Dir.new("#{settings.site_path}/#{settings.posts_dir}")
-        posts = dir.each.select { |e| e[/#{settings.post_ext}$/] }
+        posts = get_posts(dir)
         send_json(posts)
       end
 
@@ -53,6 +53,10 @@ module JekyllWeb
         content_type :json
         { status: :success,
           data: data }.to_json
+      end
+
+      def get_posts(path)
+        path.each.select { |e| e[/#{settings.post_ext}$/] }
       end
 
     end

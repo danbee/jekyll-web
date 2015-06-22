@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 
+gem 'dotenv'
+
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-asset-pipeline'
