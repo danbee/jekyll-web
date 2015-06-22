@@ -10,6 +10,10 @@ gem 'sinatra-asset-pipeline'
 gem 'react-jsx-sprockets'
 gem 'foreman'
 
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+
 gem 'jekyll'
 
 source 'https://rails-assets.org' do
