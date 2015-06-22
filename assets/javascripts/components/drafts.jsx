@@ -27,6 +27,7 @@ var Drafts = React.createClass({
       <table className="draftList">
         <tr>
           <th>Title</th>
+          <th>Author</th>
         </tr>
         {drafts}
       </table>
@@ -39,6 +40,7 @@ var Draft = React.createClass({
     return (
       <tr>
         <td>{this.props.data.title}</td>
+        <td>{this.props.data.author}</td>
       </tr>
     );
   }
