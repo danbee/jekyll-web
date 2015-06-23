@@ -3,10 +3,14 @@ var JekyllWeb = React.createClass({
     return (
       <div className="jekyllWeb">
       <h1>Jekyll Web</h1>
-      <h2>Drafts</h2>
-      <Drafts url="/api/drafts.json"></Drafts>
-      <h2>Posts</h2>
-      <Posts url="/api/posts.json"></Posts>
+      <section id="drafts">
+        <h2>Drafts</h2>
+        <Drafts url="/api/drafts.json"></Drafts>
+      </section>
+      <section id="posts">
+        <h2>Posts</h2>
+        <Posts url="/api/posts.json"></Posts>
+      </section>
       </div>
     );
   }
