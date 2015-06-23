@@ -39,15 +39,25 @@ module JekyllWeb
       end
 
       get '/drafts.json' do
-        dir = site_path.join(settings.drafts_dir)
-        drafts = get_posts(dir)
+        drafts = get_drafts
         send_json(drafts)
       end
 
       get '/posts.json' do
-        dir = site_path.join(settings.posts_dir)
-        posts = get_posts(dir)
+        posts = get_posts
         send_json(posts)
+      end
+
+      def get_drafts
+        path = site_path.join(settings.drafts_dir)
+        entries = Dir.new(path).sort
+        get_post_items(path, entries)
+      end
+
+      def get_posts
+        path = site_path.join(settings.posts_dir)
+        entries = Dir.new(path).sort.reverse
+        get_post_items(path, entries)
       end
 
       def send_json(data)
@@ -56,9 +66,8 @@ module JekyllWeb
           data: data }.to_json
       end
 
-      def get_posts(path)
-        Dir.new(path).each.select { |e| e[/#{settings.post_ext}$/] }.map do |entry|
-          #YAML.load(File.read(path.join(entry)))
+      def get_post_items(path, entries)
+        entries.each.select { |e| e[/#{settings.post_ext}$/] }.map do |entry|
           post = Post.new(path, entry)
           post.data
         end
