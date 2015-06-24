@@ -1,20 +1,22 @@
-var Posts = React.createClass({
+(function () {
+  window.Posts = React.createClass({
 
-  render: function () {
-    var posts = this.props.data.map(function (post) {
+    render: function () {
+      var posts = this.props.data.map(function (post) {
+        return (
+          <Post data={post} key={post.filename}></Post>
+        );
+      });
       return (
-        <Post data={post} key={post.filename}></Post>
+        <table className="postList">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Time</th>
+          </tr>
+          {posts}
+        </table>
       );
-    });
-    return (
-      <table className="postList">
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Time</th>
-        </tr>
-        {posts}
-      </table>
-    );
-  }
-});
+    }
+  });
+})();

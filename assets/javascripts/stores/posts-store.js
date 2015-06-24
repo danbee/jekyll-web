@@ -1,4 +1,4 @@
-(function() {
+(function () {
   var data = { posts: [], drafts: [] }
 
   var endpoint = '/api/posts.json';
@@ -8,7 +8,7 @@
       this.listenTo(Actions.refreshPosts, this.refreshItems);
     },
 
-    getPosts: function() {
+    getPosts: function () {
       return data;
     },
 
