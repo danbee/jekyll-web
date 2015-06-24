@@ -1,43 +1,40 @@
-var PostList = React.createClass({
+(function() {
+  var getState = function() {
+    return postsStore.getPosts()
+  }
 
-  getInitialState: function () {
-    return {
-      drafts: [],
-      posts: []
-    }
-  },
+  window.PostList = React.createClass({
 
-  componentDidMount: function () {
-    // returns an unsubscribe handler
-    this.unsubscribePosts = postsStore.listen(this.updatePosts);
-    this.unsubscribeDrafts = draftsStore.listen(this.updateDrafts);
-    Actions.refreshPosts();
-  },
+    getInitialState: getState,
 
-  updatePosts: function (data) {
-    this.setState({ posts: data });
-  },
-  updateDrafts: function (data) {
-    this.setState({ drafts: data });
-  },
+    componentDidMount: function () {
+      // returns an unsubscribe handler
+      this.unsubscribePosts = postsStore.listen(this.updatePosts);
+      Actions.refreshPosts();
+    },
 
-  componentWillUnmount: function() {
-    this.unsubscribePosts();
-    this.unsubscribeDrafts();
-  },
+    updatePosts: function () {
+      this.setState(getState);
+    },
 
-  render: function () {
-    return (
-      <div className="postList">
+    componentWillUnmount: function() {
+      this.unsubscribePosts();
+    },
+
+    render: function () {
+      return (
+        <div className="postList">
         <section id="drafts">
-          <h2>Drafts</h2>
-          <Drafts data={this.state.drafts}></Drafts>
+        <h2>Drafts</h2>
+        <Drafts data={this.state.drafts}></Drafts>
         </section>
         <section id="posts">
-          <h2>Posts</h2>
-          <Posts data={this.state.posts}></Posts>
+        <h2>Posts</h2>
+        <Posts data={this.state.posts}></Posts>
         </section>
-      </div>
-    )
-  }
-});
+        </div>
+      )
+    }
+  });
+
+})();

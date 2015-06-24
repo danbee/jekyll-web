@@ -38,14 +38,10 @@ module JekyllWeb
         ENV.to_hash.to_json
       end
 
-      get '/drafts.json' do
-        drafts = get_drafts
-        send_json(drafts)
-      end
-
       get '/posts.json' do
         posts = get_posts
-        send_json(posts)
+        drafts = get_drafts
+        send_json({ posts: posts, drafts: drafts })
       end
 
       get '/posts/:filename' do
