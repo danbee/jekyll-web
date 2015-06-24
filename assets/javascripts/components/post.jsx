@@ -8,7 +8,9 @@
         postDate = <td>{this.props.data.date}</td>;
       }
 
-      var postLink = '#/posts/' + this.props.data.filename;
+      var type = this.props.draft ? 'drafts' : 'posts'
+
+      var postLink = '#/edit/'+type+'/' + this.props.data.filename;
 
       return (
         <tr>

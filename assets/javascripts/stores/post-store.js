@@ -1,27 +1,27 @@
 (function () {
   var posts = {};
 
-  var endpoint = '/api/posts/';
+  var endpoint = '/api';
 
   var emptyPost = { meta: {}, content: '' };
 
   window.postStore = Reflux.createStore({
-    getPost: function (filename) {
+    getPost: function (type, filename) {
       if (posts[filename] == undefined) {
-        this.fetchPost(filename);
+        this.fetchPost(type, filename);
         return emptyPost;
       }
       return posts[filename];
     },
 
-    fetchPost: function (filename) {
-      var postEndpoint = endpoint + filename;
+    fetchPost: function (type, filename) {
+      var postEndpoint = [endpoint, type, filename].join('/');
+      console.log(postEndpoint);
 
       $.ajax({
         url: postEndpoint,
         dataType: 'json',
         success: function (response) {
-          console.log(response);
           posts[filename] = response.data;
           this.trigger();
         }.bind(this),

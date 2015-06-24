@@ -49,6 +49,11 @@ module JekyllWeb
         send_json(post)
       end
 
+      get '/drafts/:filename' do
+        post = get_post(params[:filename])
+        send_json(post)
+      end
+
       private
 
       def get_drafts

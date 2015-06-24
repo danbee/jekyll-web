@@ -6,7 +6,8 @@
     <Route handler={JekyllWeb} path="/">
       <DefaultRoute handler={PostList} />
       <Route name="posts" handler={PostList} />
-      <Route name="post" path="/posts/:filename" handler={PostEditor} />
+      <Route name="post" path="/edit/:type/:filename" handler={PostEditor} />
+      <Route name="draft" path="/edit/:type/:filename" handler={PostEditor} />
     </Route>
   );
 
