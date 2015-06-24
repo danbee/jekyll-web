@@ -57,22 +57,16 @@ module JekyllWeb
         get_post_items(path, entries)
       end
 
-      def get_post(filename)
-        path = site_path.join(settings.posts_dir)
-        post = Post.new(path, filename)
-        post.as_hash
-      end
-
       def get_posts
         path = site_path.join(settings.posts_dir)
         entries = Dir.new(path).sort.reverse
         get_post_items(path, entries)
       end
 
-      def send_json(data)
-        content_type :json
-        { status: :success,
-          data: data }.to_json
+      def get_post(filename)
+        path = site_path.join(settings.posts_dir)
+        post = Post.new(path, filename)
+        post.as_hash
       end
 
       def get_post_items(path, entries)
@@ -84,6 +78,12 @@ module JekyllWeb
 
       def site_path
         Pathname.new(settings.site_path)
+      end
+
+      def send_json(data)
+        content_type :json
+        { status: :success,
+          data: data }.to_json
       end
 
     end
