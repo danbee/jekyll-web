@@ -13,7 +13,7 @@ module JekyllWeb
         if content =~ /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m
           self.content = $POSTMATCH
           self.meta = SafeYAML.load($1)
-          self.meta['date'] = DateTime.parse(meta['date'].to_s).strftime('%FT%T%:z') if !self.meta['date'].nil?
+          self.meta['date'] = DateTime.parse(meta['date'].to_s).strftime('%-d %B %Y, %H:%M') if !self.meta['date'].nil?
           self.meta['filename'] = name
         end
       rescue SyntaxError => e
