@@ -19,6 +19,7 @@ gem 'jekyll'
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery'
   gem 'rails-assets-react'
+  gem 'rails-assets-react-router'
   gem 'rails-assets-reflux'
   gem 'rails-assets-moment'
 end

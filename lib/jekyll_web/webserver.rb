@@ -48,10 +48,23 @@ module JekyllWeb
         send_json(posts)
       end
 
+      get '/posts/:filename' do
+        post = get_post(params[:filename])
+        send_json(post)
+      end
+
+      private
+
       def get_drafts
         path = site_path.join(settings.drafts_dir)
         entries = Dir.new(path).sort
         get_post_items(path, entries)
+      end
+
+      def get_post(filename)
+        path = site_path.join(settings.posts_dir)
+        post = Post.new(path, filename)
+        post.as_hash
       end
 
       def get_posts
@@ -69,7 +82,7 @@ module JekyllWeb
       def get_post_items(path, entries)
         entries.each.select { |e| e[/#{settings.post_ext}$/] }.map do |entry|
           post = Post.new(path, entry)
-          post.data
+          post.meta
         end
       end
 

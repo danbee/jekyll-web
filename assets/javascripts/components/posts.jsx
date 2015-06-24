@@ -1,24 +1,7 @@
 var Posts = React.createClass({
 
-  getInitialState: function () {
-    return { items: [] }
-  },
-
-  componentDidMount: function () {
-    // returns an unsubscribe handler
-    this.unsubscribe = postsStore.listen(this.updateItems);
-  },
-
-  componentWillUnmount: function() {
-    this.unsubscribe();
-  },
-
-  updateItems: function (items) {
-    this.setState({ items: items });
-  },
-
   render: function () {
-    var posts = this.state.items.map(function (post) {
+    var posts = this.props.data.map(function (post) {
       return (
         <Post data={post}></Post>
       );

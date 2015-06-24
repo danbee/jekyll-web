@@ -1,6 +1,6 @@
 module JekyllWeb
   class Post
-    attr_accessor :data, :content
+    attr_accessor :meta, :content
 
     def initialize(base, name)
       @base, @name = base, name
@@ -12,8 +12,9 @@ module JekyllWeb
         self.content = File.read(base.join(name))
         if content =~ /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m
           self.content = $POSTMATCH
-          self.data = SafeYAML.load($1)
-          self.data['date'] = DateTime.parse(data['date'].to_s).strftime('%FT%T%:z') if !self.data['date'].nil?
+          self.meta = SafeYAML.load($1)
+          self.meta['date'] = DateTime.parse(meta['date'].to_s).strftime('%FT%T%:z') if !self.meta['date'].nil?
+          self.meta['filename'] = name
         end
       rescue SyntaxError => e
         Jekyll.logger.warn "YAML Exception reading #{File.join(base, name)}: #{e.message}"
@@ -21,7 +22,12 @@ module JekyllWeb
         Jekyll.logger.warn "Error reading file #{File.join(base, name)}: #{e.message}"
       end
 
-      self.data ||= {}
+      self.meta ||= {}
+    end
+
+    def as_hash
+      { meta: meta,
+        content: content }
     end
   end
 end
