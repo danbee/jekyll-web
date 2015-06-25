@@ -45,13 +45,23 @@ module JekyllWeb
 
       get '/posts/:filename' do
         post = Post.find(site_path, params[:filename])
-        send_json(post.as_full_hash)
+        if post
+          send_json(post.as_full_hash)
+        else
+          not_found
+        end
       end
 
       private
 
       def site_path
         Pathname.new(settings.site_path)
+      end
+
+      def not_found
+        status 404
+        content_type :json
+        { status: :not_found }.to_json
       end
 
       def send_json(data)
