@@ -39,47 +39,16 @@ module JekyllWeb
       end
 
       get '/posts.json' do
-        posts = get_posts
-        drafts = get_drafts
-        send_json({ posts: posts, drafts: drafts })
+        posts = Post.find_all_posts(site_path)
+        send_json(posts.map(&:as_hash))
       end
 
       get '/posts/:filename' do
-        post = get_post(params[:filename])
-        send_json(post)
-      end
-
-      get '/drafts/:filename' do
-        post = get_post(params[:filename])
-        send_json(post)
+        post = Post.find(site_path, params[:filename])
+        send_json(post.as_full_hash)
       end
 
       private
-
-      def get_drafts
-        path = site_path.join(settings.drafts_dir)
-        entries = Dir.new(path).sort
-        get_post_items(path, entries)
-      end
-
-      def get_posts
-        path = site_path.join(settings.posts_dir)
-        entries = Dir.new(path).sort.reverse
-        get_post_items(path, entries)
-      end
-
-      def get_post(filename)
-        path = site_path.join(settings.posts_dir)
-        post = Post.new(path, filename)
-        post.as_hash
-      end
-
-      def get_post_items(path, entries)
-        entries.each.select { |e| e[/#{settings.post_ext}$/] }.map do |entry|
-          post = Post.new(path, entry)
-          post.meta
-        end
-      end
 
       def site_path
         Pathname.new(settings.site_path)
