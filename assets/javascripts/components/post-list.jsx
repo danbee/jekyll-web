@@ -1,6 +1,9 @@
 (function () {
   var getState = function () {
-    return postsStore.getPosts()
+    return {
+      drafts: postsStore.getPosts({ published: false }),
+      posts: postsStore.getPosts({ published: true })
+    };
   }
 
   window.PostList = React.createClass({

@@ -1,5 +1,5 @@
 (function () {
-  var data = { posts: [], drafts: [] }
+  var posts = [];
 
   var endpoint = '/api/posts.json';
 
@@ -8,8 +8,8 @@
       this.listenTo(Actions.refreshPosts, this.refreshItems);
     },
 
-    getPosts: function () {
-      return data;
+    getPosts: function (query) {
+      return _.where(posts, query);
     },
 
     refreshItems: function () {
@@ -17,7 +17,7 @@
         url: endpoint,
         dataType: 'json',
         success: function (response) {
-          data = response.data;
+          posts = response.data;
           this.trigger();
         }.bind(this),
         error: function (xhr, status, err) {

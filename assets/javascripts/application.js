@@ -1,3 +1,4 @@
+//= require underscore
 //= require jquery
 //= require react
 //= require react-router

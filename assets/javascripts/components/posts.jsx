@@ -4,7 +4,7 @@
     render: function () {
       var posts = this.props.data.map(function (post) {
         return (
-          <Post data={post} key={post.filename}></Post>
+          <Post data={post} key={post._id}></Post>
         );
       });
       return (

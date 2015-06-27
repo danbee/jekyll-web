@@ -4,18 +4,18 @@
 
       var postDate;
 
-      if (this.props.data.date) {
-        postDate = <td>{this.props.data.date}</td>;
+      if (this.props.data.meta.date) {
+        postDate = <td>{this.props.data.meta.date}</td>;
       }
 
       var type = this.props.draft ? 'drafts' : 'posts'
 
-      var postLink = '#/edit/'+type+'/' + this.props.data.filename;
+      var postLink = '#/edit/'+type+'/' + this.props.data._id;
 
       return (
         <tr>
-          <td><a href={postLink}>{this.props.data.title}</a></td>
-          <td>{this.props.data.author}</td>
+          <td><a href={postLink}>{this.props.data.meta.title}</a></td>
+          <td>{this.props.data.meta.author}</td>
           {postDate}
         </tr>
       );

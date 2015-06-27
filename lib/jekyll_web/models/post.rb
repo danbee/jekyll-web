@@ -25,13 +25,13 @@ module JekyllWeb
     end
 
     def as_hash
-      { name: @name,
+      { _id: @name,
         meta: meta,
         published: published }
     end
 
     def as_full_hash
-      { name: @name,
+      { _id: @name,
         meta: meta,
         published: published,
         content: content }
