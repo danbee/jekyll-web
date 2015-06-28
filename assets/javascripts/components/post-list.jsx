@@ -16,12 +16,12 @@
       Actions.refreshPosts();
     },
 
-    updatePosts: function () {
-      this.setState(getState);
-    },
-
     componentWillUnmount: function () {
       this.unsubscribePosts();
+    },
+
+    updatePosts: function () {
+      this.setState(getState);
     },
 
     render: function () {

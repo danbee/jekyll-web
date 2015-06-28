@@ -2,26 +2,31 @@
   window.PostEditor = React.createClass({
 
     getInitialState: function () {
-      return { post: postStore.getPost(this.type(), this.filename()) };
+      return { post: postsStore.getPost(this.filename()) };
     },
 
     filename: function () {
       return this.props.params.filename;
     },
 
-    type: function () {
-      return this.props.params.type;
-    },
-
     componentDidMount: function () {
       // returns an unsubscribe handler
-      this.unsubscribePosts = postStore.listen(this.updatePost);
+      Actions.fetchPost(this.filename());
+      this.unsubscribePosts = postsStore.listen(this.updatePost);
+    },
+
+    componentWillUnmount: function () {
+      this.unsubscribePosts();
     },
 
     updatePost: function () {
       this.setState({
-        post: postStore.getPost(this.type(), this.filename())
+        post: postsStore.getPost(this.filename())
       });
+    },
+
+    handleChange: function (event) {
+      this.setState({ post: { meta: { title: event.target.value } } });
     },
 
     render: function () {
@@ -30,16 +35,20 @@
           <h2>Post Editor</h2>
           <form>
             <div>
-              <label>Title</label>
-              <input type="text" value={this.state.post.meta.title} />
+              <label htmlFor="title">Title</label>
+              <input type="text"
+                     id="title"
+                     name="title"
+                     onChange={Actions.updateTitle}
+                     value={this.state.post.meta.title} />
             </div>
             <div>
-              <label>Author</label>
-              <input type="text" value={this.state.post.meta.author} />
+              <label htmlFor="author">Author</label>
+              <input type="text" id="author" name="author" value={this.state.post.meta.author} />
             </div>
             <div>
-              <label>Content</label>
-              <textarea lines="50" value={this.state.post.content} />
+              <label htmlFor="content">Content</label>
+              <textarea lines="50" id="content" name="content" value={this.state.post.content} />
             </div>
             <div className="controls">
               <input type="submit" value="Save" />
