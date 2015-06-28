@@ -1,4 +1,4 @@
 var Actions = Reflux.createActions([
-  "refreshPosts",
+  "fetchPosts",
   "fetchPost"
 ]);

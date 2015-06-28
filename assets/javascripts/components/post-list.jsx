@@ -13,7 +13,7 @@
     componentDidMount: function () {
       // returns an unsubscribe handler
       this.unsubscribePosts = postsStore.listen(this.updatePosts);
-      Actions.refreshPosts();
+      Actions.fetchPosts();
     },
 
     componentWillUnmount: function () {

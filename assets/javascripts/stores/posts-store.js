@@ -8,7 +8,7 @@
 
   window.postsStore = Reflux.createStore({
     init: function () {
-      this.listenTo(Actions.refreshPosts, this.refreshItems);
+      this.listenTo(Actions.fetchPosts, this.fetchPosts);
       this.listenTo(Actions.fetchPost, this.fetchPost);
     },
 
@@ -22,7 +22,7 @@
       else { return post }
     },
 
-    refreshItems: function () {
+    fetchPosts: function () {
       $.ajax({
         url: postsEndpoint,
         dataType: 'json',
