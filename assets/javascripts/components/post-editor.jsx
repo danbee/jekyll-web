@@ -25,8 +25,16 @@
       });
     },
 
-    handleChange: function (event) {
-      this.setState({ post: { meta: { title: event.target.value } } });
+    handleMetaChange: function (event) {
+      newMeta = {};
+      newMeta[event.target.name] = event.target.value;
+      Object.assign(this.state.post.meta, newMeta);
+      this.setState({ post: this.state.post });
+    },
+
+    handleContentChange: function (event) {
+      Object.assign(this.state.post, { content: event.target.value });
+      this.setState({ post: this.state.post });
     },
 
     render: function () {
@@ -39,16 +47,24 @@
               <input type="text"
                      id="title"
                      name="title"
-                     onChange={Actions.updateTitle}
+                     onChange={this.handleMetaChange}
                      value={this.state.post.meta.title} />
             </div>
             <div>
               <label htmlFor="author">Author</label>
-              <input type="text" id="author" name="author" value={this.state.post.meta.author} />
+              <input type="text"
+                     id="author"
+                     name="author"
+                     onChange={this.handleMetaChange}
+                     value={this.state.post.meta.author} />
             </div>
             <div>
               <label htmlFor="content">Content</label>
-              <textarea lines="50" id="content" name="content" value={this.state.post.content} />
+              <textarea type="text"
+                        id="content"
+                        name="content"
+                        onChange={this.handleContentChange}
+                        value={this.state.post.content} />
             </div>
             <div className="controls">
               <input type="submit" value="Save" />
