@@ -1,0 +1,21 @@
+{
+  "name": "project-name",
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "watchify": "^3.2.3"
+  },
+  "scripts": {
+    "bundle": "browserify -t babelify assets/javascripts/src/app.js -o assets/javascripts/bundle.js",
+    "watch-js": "watchify -t babelify assets/javascripts/src/app.js -o assets/javascripts/bundle.js",
+    "start": "npm run watch-js & bundle exec shotgun"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "lodash": "^3.9.3",
+    "moment": "^2.10.3",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "reflux": "^0.2.8"
+  }
+}

@@ -15,7 +15,7 @@ module JekyllWeb
 
     config_file "#{settings.root}/config.yml"
 
-    set :assets_precompile, %w(application.js styles.css *.png *.jpg *.svg *.eot *.ttf *.woff)
+    set :assets_precompile, %w(styles.css *.png *.jpg *.svg *.eot *.ttf *.woff)
     set :assets_prefix, ['assets']
 
     register Sinatra::AssetPipeline

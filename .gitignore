@@ -18,6 +18,10 @@ tmp
 .sass-cache
 _jekyll
 
+# browserify stuff
+assets/javascripts/bundle.js
+node_modules
+
 # config
 config.yml
 .env
