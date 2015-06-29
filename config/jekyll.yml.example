@@ -1,4 +1,0 @@
-site:
-  path: '/path/to/your/jekyll/site'
-  posts: '_posts'
-  drafts: '_drafts'
