@@ -7,7 +7,6 @@ gem 'dotenv'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-asset-pipeline'
-gem 'react-jsx-sprockets'
 gem 'foreman'
 
 gem 'bourbon'
