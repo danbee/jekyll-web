@@ -7,7 +7,7 @@ let Posts = React.createClass({
   render: function () {
     var posts = this.props.data.map(function (post) {
       return (
-        <Post data={post} key={post._id}></Post>
+        <Post data={post} key={post.id}></Post>
       );
     });
     return (

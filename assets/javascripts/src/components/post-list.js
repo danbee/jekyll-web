@@ -3,8 +3,8 @@ import React from 'react';
 import Actions from '../actions';
 
 import postsStore from '../stores/posts-store';
-import Drafts from './drafts'
-import Posts from './posts'
+import Drafts from './drafts';
+import Posts from './posts';
 
 let getState = function () {
   return {

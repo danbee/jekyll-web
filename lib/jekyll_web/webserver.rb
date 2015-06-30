@@ -32,7 +32,7 @@ module JekyllWeb
 
     namespace '/api' do
 
-      get '/posts.json' do
+      get '/posts' do
         posts = Post.find_all_posts(site_path)
         send_json(posts.map(&:as_hash))
       end
@@ -60,8 +60,7 @@ module JekyllWeb
 
       def send_json(data)
         content_type :json
-        { status: :success,
-          data: data }.to_json
+        data.to_json
       end
 
     end

@@ -11,6 +11,8 @@
     "start": "npm run watch-js & bundle exec shotgun"
   },
   "dependencies": {
+    "ampersand-model": "^5.0.3",
+    "ampersand-rest-collection": "^4.0.0",
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
     "moment": "^2.10.3",

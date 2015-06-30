@@ -9,9 +9,7 @@ let Post = React.createClass({
       postDate = <td>{this.props.data.meta.date}</td>;
     }
 
-    var type = this.props.draft ? 'drafts' : 'posts'
-
-    var postLink = '#/edit/' + this.props.data._id;
+    var postLink = '#/edit/' + this.props.data.id;
 
     return (
       <tr>
