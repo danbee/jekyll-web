@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 
 import Actions from '../actions';
@@ -7,11 +8,18 @@ import postsStore from '../stores/posts-store';
 let PostEditor = React.createClass({
 
   getInitialState: function () {
-    return { post: postsStore.getPost(this.id()) };
+    return { post: this.getPost() };
   },
 
   id: function () {
     return this.props.params.id;
+  },
+
+  getPost: function () {
+    let post = postsStore.getPost(this.id());
+    return { id: post.id,
+             meta: post.meta,
+             content: post.content };
   },
 
   componentDidMount: function () {
@@ -26,7 +34,7 @@ let PostEditor = React.createClass({
 
   updatePost: function () {
     this.setState({
-      post: postsStore.getPost(this.id())
+      post: this.getPost()
     });
   },
 
@@ -73,6 +81,7 @@ let PostEditor = React.createClass({
           </div>
           <div className="controls">
             <input type="submit" value="Save" />
+            <input type="submit" className="cancel" value="Cancel" />
           </div>
         </form>
       </div>
