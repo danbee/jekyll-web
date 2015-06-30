@@ -32,12 +32,6 @@ module JekyllWeb
 
     namespace '/api' do
 
-      # TODO: Don't leave this hanging around!
-      get '/env.json' do
-        content_type :json
-        ENV.to_hash.to_json
-      end
-
       get '/posts.json' do
         posts = Post.find_all_posts(site_path)
         send_json(posts.map(&:as_hash))
