@@ -50,6 +50,11 @@ let PostEditor = React.createClass({
     this.setState({ post: this.state.post });
   },
 
+  cancelEdit: function (event) {
+    event.preventDefault();
+    window.history.back();
+  },
+
   render: function () {
     return (
       <div className="postEditor">
@@ -81,7 +86,7 @@ let PostEditor = React.createClass({
           </div>
           <div className="controls">
             <input type="submit" value="Save" />
-            <input type="submit" className="cancel" value="Cancel" />
+            <input type="submit" onClick={this.cancelEdit} className="cancel" value="Cancel" />
           </div>
         </form>
       </div>
