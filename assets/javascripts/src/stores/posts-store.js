@@ -15,6 +15,7 @@ let postsStore = Reflux.createStore({
   init: function () {
     this.listenTo(Actions.fetchPosts, this.fetchPosts);
     this.listenTo(Actions.fetchPost, this.fetchPost);
+    this.listenTo(Actions.savePost, this.savePost);
   },
 
   getPosts: function (query) {
@@ -22,9 +23,17 @@ let postsStore = Reflux.createStore({
   },
 
   getPost: function (id) {
-    var post = posts.findWhere({ id: id })
+    let post = posts.findWhere({ id: id });
     if (post == undefined) { return emptyPost; }
     else { return post }
+  },
+
+  savePost: function (attributes, callback) {
+    let post = posts.findWhere({ id: attributes.id });
+    post.save(attributes, {
+      success: callback
+    });
+    this.trigger();
   },
 
   fetchPosts: function () {

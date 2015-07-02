@@ -46,6 +46,12 @@ module JekyllWeb
         end
       end
 
+      put '/posts/:filename' do
+        data = JSON.parse(request.body.read)
+        post = Post.find(site_path, params[:filename])
+        post.update(data)
+      end
+
       private
 
       def site_path

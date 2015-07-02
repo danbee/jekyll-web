@@ -24,6 +24,17 @@ module JekyllWeb
       self.meta ||= {}
     end
 
+    def write_yaml(base, name)
+      file_contents = [meta.to_yaml + '---', '', content].join("\n")
+      File.write(base.join(name), file_contents)
+    end
+
+    def update(data)
+      meta.merge!(data['meta'])
+      content = data['content']
+      write_yaml(@base, @name)
+    end
+
     def as_hash
       { id: @name,
         meta: meta,

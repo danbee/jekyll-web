@@ -2,3 +2,11 @@ textarea {
   min-height: 20em;
   font-family: 'Source Code Pro', monospace;
 }
+
+.controls {
+  text-align: right;
+}
+
+button.save {
+  margin-right: 0.75em;
+}

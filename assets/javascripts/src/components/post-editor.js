@@ -39,7 +39,7 @@ let PostEditor = React.createClass({
   },
 
   handleMetaChange: function (event) {
-    newMeta = {};
+    let newMeta = {};
     newMeta[event.target.name] = event.target.value;
     Object.assign(this.state.post.meta, newMeta);
     this.setState({ post: this.state.post });
@@ -48,6 +48,14 @@ let PostEditor = React.createClass({
   handleContentChange: function (event) {
     Object.assign(this.state.post, { content: event.target.value });
     this.setState({ post: this.state.post });
+  },
+
+  savePost: function (event) {
+    event.preventDefault();
+    console.log(this.state.post);
+    Actions.savePost(this.state.post, () => {
+      window.history.back();
+    });
   },
 
   cancelEdit: function (event) {
@@ -85,8 +93,8 @@ let PostEditor = React.createClass({
                       value={this.state.post.content} />
           </div>
           <div className="controls">
-            <input type="submit" value="Save" />
-            <input type="submit" onClick={this.cancelEdit} className="cancel" value="Cancel" />
+            <button type="submit" onClick={this.savePost} className="save">Save</button>
+            <button type="submit" onClick={this.cancelEdit} className="cancel">Cancel</button>
           </div>
         </form>
       </div>
