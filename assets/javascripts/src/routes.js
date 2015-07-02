@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, DefaultRoute} from 'react-router';
+import { Route, DefaultRoute } from 'react-router';
 
 import JekyllWeb  from './components/jekyll-web';
 import PostList   from './components/post-list';
