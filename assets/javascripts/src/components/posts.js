@@ -5,11 +5,6 @@ import Post from './post';
 let Posts = React.createClass({
 
   render: function () {
-    var posts = this.props.data.map(function (post) {
-      return (
-        <Post data={post} key={post.id}></Post>
-      );
-    });
     return (
       <table className="postList">
         <tr>
@@ -17,7 +12,9 @@ let Posts = React.createClass({
           <th>Author</th>
           <th>Time</th>
         </tr>
-        {posts}
+        {this.props.data.map((post) => {
+          return <Post data={post} key={post.id}></Post>;
+        })}
       </table>
     );
   }
