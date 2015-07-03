@@ -1,7 +1,8 @@
 import React from 'react';
 
-let Post = React.createClass({
-  render: function () {
+class Post extends React.Component {
+
+  render() {
 
     var postDate;
 
@@ -18,7 +19,8 @@ let Post = React.createClass({
         {postDate}
       </tr>
     );
+
   }
-});
+};
 
 export default Post;

@@ -6,32 +6,31 @@ import postsStore from '../stores/posts-store';
 import Drafts from './drafts';
 import Posts from './posts';
 
-let getState = function () {
+let getState = () => {
   return {
     drafts: postsStore.getPosts({ published: false }),
     posts: postsStore.getPosts({ published: true })
   };
 }
 
-let PostList = React.createClass({
+class PostList extends React.Component {
 
-  getInitialState: getState,
+  constructor(props) {
+    super(props);
+    this.state = getState();
+  }
 
-  componentDidMount: function () {
+  componentDidMount() {
     // returns an unsubscribe handler
-    this.unsubscribePosts = postsStore.listen(this.updatePosts);
+    this.unsubscribePosts = postsStore.listen(() => this.setState(getState()));
     Actions.fetchPosts();
-  },
+  }
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     this.unsubscribePosts();
-  },
+  }
 
-  updatePosts: function () {
-    this.setState(getState);
-  },
-
-  render: function () {
+  render() {
     return (
       <div className="postList">
         <section id="drafts">
@@ -45,6 +44,7 @@ let PostList = React.createClass({
       </div>
     )
   }
-});
+
+};
 
 export default PostList;

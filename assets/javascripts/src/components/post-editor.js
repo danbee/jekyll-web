@@ -5,65 +5,66 @@ import Actions from '../actions';
 
 import postsStore from '../stores/posts-store';
 
-let PostEditor = React.createClass({
+class PostEditor extends React.Component {
 
-  getInitialState: function () {
-    return { post: this.getPost() };
-  },
+  constructor(props) {
+    super(props);
+    this.state = { post: this.getPost() };
+  }
 
-  id: function () {
+  id() {
     return this.props.params.id;
-  },
+  }
 
-  getPost: function () {
+  getPost() {
     let post = postsStore.getPost(this.id());
     return { id: post.id,
              meta: post.meta,
              content: post.content };
-  },
+  }
 
-  componentDidMount: function () {
+  componentDidMount() {
     // returns an unsubscribe handler
     Actions.fetchPost(this.id());
     this.unsubscribePosts = postsStore.listen(this.updatePost);
-  },
+  }
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     this.unsubscribePosts();
-  },
+  }
 
-  updatePost: function () {
+  updatePost() {
     this.setState({
       post: this.getPost()
     });
-  },
+  }
 
-  handleMetaChange: function (event) {
+  handleMetaChange(event) {
     let newMeta = {};
     newMeta[event.target.name] = event.target.value;
     Object.assign(this.state.post.meta, newMeta);
     this.setState({ post: this.state.post });
-  },
+  }
 
-  handleContentChange: function (event) {
+  handleContentChange(event) {
     Object.assign(this.state.post, { content: event.target.value });
     this.setState({ post: this.state.post });
-  },
+  }
 
-  savePost: function (event) {
+  savePost(event) {
     event.preventDefault();
     console.log(this.state.post);
     Actions.savePost(this.state.post, () => {
       window.history.back();
     });
-  },
+  }
 
-  cancelEdit: function (event) {
+  cancelEdit(event) {
     event.preventDefault();
     window.history.back();
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <div className="postEditor">
         <h2>Post Editor</h2>
@@ -100,6 +101,7 @@ let PostEditor = React.createClass({
       </div>
     )
   }
-});
+
+};
 
 export default PostEditor;

@@ -2,9 +2,9 @@ import React from 'react';
 
 import Post from './post';
 
-let Drafts = React.createClass({
+class Drafts extends React.Component {
 
-  render: function () {
+  render() {
     return (
       <table className="draftList">
         <tr>
@@ -17,6 +17,7 @@ let Drafts = React.createClass({
       </table>
     );
   }
-});
+
+};
 
 export default Drafts;
