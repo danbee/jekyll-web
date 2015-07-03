@@ -22,7 +22,9 @@ class PostList extends React.Component {
 
   componentDidMount() {
     // returns an unsubscribe handler
-    this.unsubscribePosts = postsStore.listen(() => this.setState(getState()));
+    this.unsubscribePosts = postsStore.listen(() => {
+      this.setState(getState());
+    });
     Actions.fetchPosts();
   }
 
