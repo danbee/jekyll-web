@@ -26,17 +26,13 @@ class PostEditor extends React.Component {
   componentDidMount() {
     // returns an unsubscribe handler
     Actions.fetchPost(this.id());
-    this.unsubscribePosts = postsStore.listen(this.updatePost);
+    this.unsubscribePosts = postsStore.listen(() => {
+      this.setState({ post: this.getPost() });
+    });
   }
 
   componentWillUnmount() {
     this.unsubscribePosts();
-  }
-
-  updatePost() {
-    this.setState({
-      post: this.getPost()
-    });
   }
 
   handleMetaChange(event) {
