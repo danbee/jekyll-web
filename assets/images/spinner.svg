@@ -1,0 +1,37 @@
+<?xml version='1.0' standalone='no'?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<!-- Generated with svg-spin generator script from Robert Fleischmann (http://github.com/rendro/SVG-Spinner) -->
+<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='56px' height='56px'>
+  <g>
+<ellipse fill="black" transform='rotate(0, 28, 4)' cx='28' cy='4' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(36, 42.1068, 8.5836)' cx='42.1068' cy='8.5836' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.1s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(72, 50.8254, 20.5836)' cx='50.8254' cy='20.5836' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.2s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(108, 50.8254, 35.4164)' cx='50.8254' cy='35.4164' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.3s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(144, 42.1068, 47.4164)' cx='42.1068' cy='47.4164' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.4s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(180, 28, 52)' cx='28' cy='52' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.5s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(216, 13.8932, 47.4164)' cx='13.8932' cy='47.4164' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.6s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(252, 5.1746, 35.4164)' cx='5.1746' cy='35.4164' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.7s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(288, 5.1746, 20.5836)' cx='5.1746' cy='20.5836' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.8s' />
+</ellipse>
+<ellipse fill="black" transform='rotate(324, 13.8932, 8.5836)' cx='13.8932' cy='8.5836' rx='4' ry='4' style='opacity:0;'>
+  <animate attributeType='CSS' attributeName='opacity' from='1' to='0' dur='1s' repeatCount='indefinite' begin='0.9s' />
+</ellipse>
+  </g>
+</svg>

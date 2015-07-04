@@ -9,7 +9,7 @@ class PostEditor extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { post: this.getPost() };
+    this.state = this.getPost();
   }
 
   id() {
@@ -27,7 +27,7 @@ class PostEditor extends React.Component {
     // returns an unsubscribe handler
     Actions.fetchPost(this.id());
     this.unsubscribePosts = postsStore.listen(() => {
-      this.setState({ post: this.getPost() });
+      this.setState(this.getPost());
     });
   }
 
@@ -38,19 +38,19 @@ class PostEditor extends React.Component {
   handleMetaChange(event) {
     let newMeta = {};
     newMeta[event.target.name] = event.target.value;
-    Object.assign(this.state.post.meta, newMeta);
-    this.setState({ post: this.state.post });
+    Object.assign(this.state.meta, newMeta);
+    this.setState({ meta: this.state.meta });
   }
 
   handleContentChange(event) {
-    Object.assign(this.state.post, { content: event.target.value });
-    this.setState({ post: this.state.post });
+    this.setState({ content: event.target.value });
   }
 
   savePost(event) {
     event.preventDefault();
-    console.log(this.state.post);
-    Actions.savePost(this.state.post, () => {
+    Actions.showSpinner();
+    Actions.savePost(this.state, () => {
+      Actions.hideSpinner();
       window.history.back();
     });
   }
@@ -65,32 +65,37 @@ class PostEditor extends React.Component {
       <div className="postEditor">
         <h2>Post Editor</h2>
         <form>
-          <div>
-            <label htmlFor="title">Title</label>
-            <input type="text"
-                    id="title"
-                    name="title"
-                    onChange={this.handleMetaChange}
-                    value={this.state.post.meta.title} />
-          </div>
-          <div>
-            <label htmlFor="author">Author</label>
-            <input type="text"
-                    id="author"
-                    name="author"
-                    onChange={this.handleMetaChange}
-                    value={this.state.post.meta.author} />
-          </div>
-          <div>
-            <label htmlFor="content">Content</label>
-            <textarea type="text"
-                      id="content"
-                      name="content"
-                      onChange={this.handleContentChange}
-                      value={this.state.post.content} />
+          <input type="hidden" id="id" name="id" ref="id" value={this.state.id} />
+          <div className="inputs">
+            <div>
+              <label htmlFor="title">Title</label>
+              <input type="text"
+                      id="title"
+                      name="title"
+                      onChange={this.handleMetaChange.bind(this)}
+                      value={this.state.meta.title} />
+            </div>
+            <div>
+              <label htmlFor="author">Author</label>
+              <input type="text"
+                      id="author"
+                      name="author"
+                      onChange={this.handleMetaChange.bind(this)}
+                      value={this.state.meta.author} />
+            </div>
+            <div>
+              <label htmlFor="content">Content</label>
+              <textarea type="text"
+                        id="content"
+                        name="content"
+                        onChange={this.handleContentChange.bind(this)}
+                        value={this.state.content} />
+            </div>
           </div>
           <div className="controls">
-            <button type="submit" onClick={this.savePost} className="save">Save</button>
+            <button type="submit"
+                    onClick={this.savePost.bind(this)}
+                    className="save">Save</button>
             <button type="submit" onClick={this.cancelEdit} className="cancel">Cancel</button>
           </div>
         </form>

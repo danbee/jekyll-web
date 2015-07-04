@@ -1,0 +1,27 @@
+#spinner {
+  position: fixed;
+  display: none;
+  background: rgba(224, 224, 224, 0.6);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  &.shown {
+    display: block;
+  }
+
+  &:after {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7em;
+    height: 7em;
+    margin-left: -3.5em;
+    margin-top: -3.5em;
+    background: image-url("spinner.svg") white center center no-repeat;
+    border-radius: 3.5em;
+  }
+}

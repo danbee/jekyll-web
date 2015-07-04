@@ -4,7 +4,10 @@ let Actions = Reflux.createActions([
   "fetchPosts",
   "fetchPost",
   "updatePost",
-  "savePost"
+  "savePost",
+
+  "showSpinner",
+  "hideSpinner"
 ]);
 
 export default Actions;
